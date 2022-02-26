@@ -18,8 +18,8 @@ void ReverseArray(void){
 	printf("\n\n");
 }
 
-//Function for Program B
-/*struct Student
+//Functions for Program B
+	struct Student
 {
 	int  ID;
 	char firstName[30];
@@ -33,6 +33,8 @@ struct Student *createStudent(void)
     struct Student *newStudent;
    
     newStudent = (struct Student *) malloc(sizeof(struct Student));
+	if(newStudent == NULL)
+		return -1;
 	printf("Enter Student's ID: \n");
 	scanf("%d", &newStudent->ID);
 	printf("Enter Student's first name: \n");
@@ -45,26 +47,19 @@ struct Student *createStudent(void)
 }
 
 //SORT GPA Function
-void sort_GPA(struct Student **studentList, int count)
-{
-	int i, j, k;
-	float temp;
-	for (j = 0; j < count; ++j)
-	{
-		for (k = j + 1; k < count; ++k)
-		{
-			if (studentList[j]->GPA < studentList[k]->GPA)
-		{
-			temp = studentList[j]->GPA;
-			studentList[j]->GPA = studentList[k]->GPA;
-			studentList[k]->GPA = temp;
+void sort_GPA(struct Student **studentList, int count){
+	int j, k;
+	struct Student* temp;
+	for (j = 0; j < count; ++j){
+		for (k = j + 1; k < count; ++k){
+			if (studentList[j]->GPA < studentList[k]->GPA){
+				temp = studentList[j];
+				studentList[j] = studentList[k];
+				studentList[k] = temp;
+			}
 		}
 	}
 }
-	printf("GPA in descending order:\n");
-	for (i = 0; i < count; ++i)
-	printf("%d\n", studentList[i]->GPA);
-}*/
 
 
 //Functions for Program D and E
@@ -175,27 +170,63 @@ int main() {
 	//Test for Program A
 	ReverseArray();
 
-	//Test for Program B
-	/*int StuNum;
+
+
+
+
+// Program B
+	int StuNum;
 	printf("Enter the number of students: \n");
 	scanf("%d", &StuNum);
-    struct Student **studentList;
-    struct Student *aStudent;
-	//FILE
-	FILE *fp;
-	fp = fopen ("students.txt", "w+");
-   
-    studentList = (struct Student **) malloc(StuNum*sizeof(struct Student));
-   
-	sort_GPA(studentList, StuNum);
+	struct Student **studentList;
+
+	studentList = (struct Student **) malloc(StuNum*sizeof(struct Student*));
+	if (studentList == NULL)
+		return -1;
 	
     for( int i = 0; i < StuNum; i++ ) {
         studentList[i] = createStudent();
-		fprintf(fp, "Student's ID: \n",studentList[i]->ID);
-		fprintf(fp, "Student's first name: \n",studentList[i]->firstName );
-		fprintf(fp, "Student's last name: \n",studentList[i]->lastName );
-		fprintf(fp, "Student's GPA: \n",studentList[i]->GPA );
-    }*/
+    }
+	
+	sort_GPA(studentList, StuNum);
+	
+	FILE *fp;
+	fp = fopen ("students.txt", "w+");
+	for(int i=0;i<StuNum;i++){
+		fprintf(fp, "Student's ID: %d\n",studentList[i]->ID);
+		fprintf(fp, "Student's first name: %s\n",studentList[i]->firstName );
+		fprintf(fp, "Student's last name: %s\n",studentList[i]->lastName );
+		fprintf(fp, "Student's GPA: %.1f\n\n\n\n",studentList[i]->GPA );
+	}
+	
+	//Compute Average GPA. Program C
+	float grade, sum;
+	for (int i = 0; i < StuNum; ++i){
+		grade = studentList[i]->GPA;
+		sum = sum + grade;
+	}
+	float ave_GPA = sum/StuNum;
+	fprintf(fp, "Average GPA: %.2f\n\n",ave_GPA);
+	fclose(fp);
+	for(int i=0;i<StuNum;i++){
+		free(studentList[i]);
+	}
+	free(studentList);
+	
+	// PRINT ALL CONTENTS FROM FILE. PROGRAM C
+	printf("\n\nProgram C. Print out students.txt\n\n");
+	FILE *fpt;
+	char c;
+	fpt = fopen ("students.txt", "r");
+	c = fgetc(fpt);
+	while (c != EOF){
+		printf ("%c", c);
+		c = fgetc(fpt);
+	}
+	fclose(fpt);
+
+
+
 
 	//Test for Program D and E
 	char str[100]="Hello";

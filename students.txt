@@ -1,8 +1,37 @@
-Student's ID: 
-Student's first name: 
-Student's last name: 
-Student's GPA: 
-Student's ID: 
-Student's first name: 
-Student's last name: 
-Student's GPA: 
+Student's ID: 91991
+Student's first name: lee
+Student's last name: sin
+Student's GPA: 3.9
+
+
+
+Student's ID: 12342
+Student's first name: adrian
+Student's last name: kim
+Student's GPA: 3.8
+
+
+
+Student's ID: 12345
+Student's first name: khoi
+Student's last name: trinh
+Student's GPA: 3.7
+
+
+
+Student's ID: 12341
+Student's first name: jeff
+Student's last name: king
+Student's GPA: 3.3
+
+
+
+Student's ID: 99999
+Student's first name: tony
+Student's last name: stark
+Student's GPA: 3.1
+
+
+
+Average GPA: 3.56
+
