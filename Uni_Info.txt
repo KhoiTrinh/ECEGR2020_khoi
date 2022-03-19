@@ -1,0 +1,37 @@
+Number of people: 5
+
+Professor
+ID: 12346
+First Name: King
+Last Name: Kong
+Salary: 600000
+Tenured: 0
+Department: Math
+
+Student
+ID: 11111
+First Name: Grant
+Last Name: Ma
+GPA: 3.33
+
+Professor
+ID: 22222
+First Name: Siu
+Last Name: Cha
+Salary: 620000
+Tenured: 0
+Department: Music
+
+Professor
+ID: 33333
+First Name: Mesut
+Last Name: Ozil
+Salary: 900000
+Tenured: 1
+Department: Law
+
+Employee
+ID: 44444
+First Name: Martin
+Last Name: Holand
+Salary: 705000
